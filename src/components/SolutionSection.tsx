@@ -1,81 +1,97 @@
-"use client";
+import parse from 'html-react-parser';
 
-import React from "react";
-
-export const SolutionSection: React.FC = () => {
-  return (
-    <section id="Our-Solution" style={{ padding: "6rem 2rem", background: "#e9e1d1" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* Solution Header */}
-        <div style={{ marginBottom: "4rem" }}>
-          <h2 style={{ fontSize: "5rem", color: "#1a3323", fontWeight: 400, lineHeight: 1, marginBottom: "1.5rem" }}>
-            The solution
-          </h2>
-          <p style={{ fontSize: "1.25rem", color: "#4a3e35", maxWidth: "600px", lineHeight: "1.6" }}>
-            Confronted with the devastating impact of waste, we knew something had to change. That’s why we launched our mobile waste processing plants, delivering an innovative solution that can go wherever it&#39;s needed.
-          </p>
-        </div>
-
-        {/* Main Plant Visual */}
-        <div style={{ marginBottom: "5rem", textAlign: "center" }}>
-          <img 
-            src="https://cdn.prod.website-files.com/6733a9fa15c9b31fb9dd058e/6738e950d57d477447a62624_main-kv-min.webp" 
-            alt="Saapro Mobile Waste Processing Plant" 
-            style={{ width: "100%", maxHeight: "550px", objectFit: "cover", borderRadius: "2rem", boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
-          />
-        </div>
-
-        {/* Why Saapro Section */}
-        <div id="why-saapro" style={{ paddingTop: "2rem" }}>
-          <div style={{ fontSize: "1rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "#54BF44", fontWeight: 600, marginBottom: "1rem" }}>
-            Why Saapro
-          </div>
-          <h2 style={{ fontSize: "3rem", color: "#1a3323", fontWeight: 400, marginBottom: "3rem" }}>
-            Revolutionary Mobile Waste Management Solution
-          </h2>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "2rem" }}>
-            {/* 001 Efficient */}
-            <div style={{ background: "#f4efe6", padding: "2.5rem", borderRadius: "1.5rem", border: "1px solid rgba(0,0,0,0.05)" }}>
-              <span style={{ fontSize: "0.875rem", color: "#a39b8c", fontWeight: 600 }}>001</span>
-              <h3 style={{ fontSize: "2rem", color: "#1a3323", marginTop: "0.5rem", marginBottom: "1.5rem" }}>Efficient</h3>
-              <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.75rem", color: "#3d342d", fontSize: "0.95rem" }}>
-                <li>✓ No waste pre-treatment required</li>
-                <li>✓ Rapidly deployed to any location</li>
-                <li>✓ Total waste disposal of all waste types</li>
-                <li>✓ Accepts organic, paper, plastic, metal, glass, medical waste & rubber</li>
-                <li>✓ Processes waste with up to 80% moisture</li>
-              </ul>
+export const SolutionSection = () => {
+  const html = `<section id="Our-Solution" class="section dark-beige">
+        <div class="w-layout-blockcontainer container w-container">
+            <div class="solution-wrapper">
+                <div class="solutions-heading-wrap">
+                    <div class="solutions-heading">
+                        <h2 letters-slide-up-h1="" text-split-h1="" class="text-140-regular">Why<br>ReGeneva</h2><img src="/assets/6738c2f3a5741ddf29be8a84_brown-1.svg" loading="lazy" alt="" class="brown-icon"><img src="/assets/6738c316c8e327ef3cd1b687_brown-2.svg" loading="lazy" alt="" class="brown-icon"></div>
+                    <div class="text-16-regular brown _w-510">Every organization's ESG journey is different and so is our approach. Whether you're preparing for BRSR, CSRD, or GRI reporting, strengthening investor confidence, improving ESG ratings, or building a Net Zero roadmap, we tailor every engagement to your business priorities.</div>
+                </div><img src="/assets/6738e950d57d477447a62624_main-kv-min.webp" loading="eager" sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px" srcset="/assets/6738e950d57d477447a62624_main-kv-min-p-500.webp 500w, /assets/6738e950d57d477447a62624_main-kv-min-p-800.webp 800w, /assets/6738e950d57d477447a62624_main-kv-min-p-1080.webp 1080w, /assets/6738e950d57d477447a62624_main-kv-min-p-1600.webp 1600w, /assets/6738e950d57d477447a62624_main-kv-min.webp 2001w" alt="" class="main-kv-img"></div>
+            <div id="why-saapro" class="why-saapro-wrap">
+                <div class="_w-888">
+                    <div class="text-16-regular brown">The Value You Will Create</div>
+                    <h2 text-split-h1="" letters-slide-up-h1="" class="h2 mobile-why">Build an ESG Strategy That Drives Business Value</h2>
+                    <h2 letters-slide-up-h1="" text-split-h1="" class="h2 web-why">Build an ESG Strategy That</h2>
+                    <h2 letters-slide-up-h1="" text-split-h1="" class="h2 management">Drives Business Value</h2>
+                </div>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="text-13-regular">001</div>
+                        <div class="feature-name">
+                            <div class="text-32-regular">Vision & Maturity</div>
+                            <div class="feature-name-list">
+                                <div class="text-16-regular brown">A clear ESG vision aligned with business goals</div>
+                                <div class="text-16-regular brown">A comprehensive understanding of your ESG maturity</div>
+                                <div class="text-16-regular brown">Prioritized ESG themes that matter most</div>
+                                <div class="text-16-regular brown">A practical implementation roadmap</div>
+                            </div>
+                        </div><img src="/assets/67571292300c51acda4a2f45_Group%20110.png" loading="lazy" id="w-node-d0b956bf-f8ca-4e74-5b0f-dec2cac24233-b9dd0595" alt="" class="feature-img _w-122"></div>
+                    <div class="feature-item second">
+                        <div class="text-13-regular">002</div>
+                        <div class="feature-name">
+                            <div class="text-32-regular">Governance & Metrics</div>
+                            <div class="feature-name-list">
+                                <div class="text-16-regular brown">Strong governance and accountability structures</div>
+                                <div class="text-16-regular brown">Measurable ESG KPIs and performance metrics</div>
+                                <div class="text-16-regular brown">Greater regulatory readiness</div>
+                                <div class="text-16-regular brown">Reliable performance monitoring and reporting</div>
+                            </div>
+                        </div><img src="/assets/67391d68527eda8f245801aa_001.png" loading="lazy" id="w-node-_31aa0eda-fd7d-4103-4ebc-375c83418edd-b9dd0595" alt="" class="feature-img"></div>
+                <div class="feature-item third">
+                    <div class="text-13-regular">003</div>
+                    <div class="feature-name">
+                        <div class="text-32-regular">Long-Term Growth</div>
+                        <div class="feature-name-list">
+                            <div class="text-16-regular brown">Increased investor, customer, and stakeholder confidence</div>
+                            <div class="text-16-regular brown">A stronger foundation for sustainable, long-term growth</div>
+                            <div class="text-16-regular brown">Better coordination across business functions</div>
+                            <div class="text-16-regular brown">Improved ESG data quality and governance</div>
+                        </div>
+                    </div><img src="/assets/675712a3deb6aa5bb5374679_Group.png" loading="lazy" id="w-node-b7c3d9ac-32d8-4444-48b6-0e1f1bef6ffc-b9dd0595" alt="" class="feature-img _w-136"></div>
             </div>
-
-            {/* 002 Eco-friendly */}
-            <div style={{ background: "#f4efe6", padding: "2.5rem", borderRadius: "1.5rem", border: "1px solid rgba(0,0,0,0.05)" }}>
-              <span style={{ fontSize: "0.875rem", color: "#a39b8c", fontWeight: 600 }}>002</span>
-              <h3 style={{ fontSize: "2rem", color: "#1a3323", marginTop: "0.5rem", marginBottom: "1.5rem" }}>Eco-friendly</h3>
-              <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.75rem", color: "#3d342d", fontSize: "0.95rem" }}>
-                <li>✓ Destruction rather than incineration of MSW</li>
-                <li>✓ Avoids handling toxic ash residue</li>
-                <li>✓ Reduces disease risk & CO2 emissions</li>
-                <li>✓ Zero pollution and ash-free</li>
-                <li>✓ Closed lifecycle with no emissions to air or water</li>
-              </ul>
-            </div>
-
-            {/* 003 Economical */}
-            <div style={{ background: "#f4efe6", padding: "2.5rem", borderRadius: "1.5rem", border: "1px solid rgba(0,0,0,0.05)" }}>
-              <span style={{ fontSize: "0.875rem", color: "#a39b8c", fontWeight: 600 }}>003</span>
-              <h3 style={{ fontSize: "2rem", color: "#1a3323", marginTop: "0.5rem", marginBottom: "1.5rem" }}>Economical</h3>
-              <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "0.75rem", color: "#3d342d", fontSize: "0.95rem" }}>
-                <li>✓ Short construction & setup time (~3 months)</li>
-                <li>✓ Reduced labor and upkeep costs</li>
-                <li>✓ Generates operational energy independently</li>
-                <li>✓ Unlimited processing capacity</li>
-                <li>✓ &gt;30% MSW weight converted into biofuel</li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
+        </div>
     </section>
-  );
+<section data-w-id="7302dcfc-9b44-0ea0-3a6c-1d2f5a3df3db" class="section dark-beige up-to-20">
+        <div class="w-layout-blockcontainer container w-container">
+            <div class="up-to-20-tons-wrap">
+                <div class="up-to-20-heading">
+                    <h2 letters-slide-up-h1="" text-split-h1="" class="h2">Ongoing ESG Support</h2>
+                    <div letters-slide-up-h1="" text-split-h1="" class="text-16-regular brown">The capabilities of our advisory services are tailored to your needs</div>
+                </div>
+                <div class="up-to-20-cards">
+                    <div data-w-id="bea5811e-36b8-7a64-4d67-2e7976d58a17" style="opacity:0" class="_20-card">
+                        <div class="_20-number">
+                            <div class="text-21-regular light">100%</div>
+                        </div>
+                        <div class="gap-5">
+                            <div class="text-32-regular dark-green">Strategy Alignment</div>
+                            <div class="text-16-regular dark-green">with business goals</div>
+                        </div>
+                    </div>
+                    <div data-w-id="ecddfc12-5824-354b-67c7-ea34f80ecc38" style="opacity:0" class="_20-card">
+                        <div class="_20-number">
+                            <div class="text-21-regular light">360°</div>
+                        </div>
+                        <div class="gap-5">
+                            <div class="text-32-regular dark-green">ESG Support</div>
+                            <div class="text-16-regular dark-green">across the value chain</div>
+                        </div>
+                    </div>
+                    <div data-w-id="a8ef50e3-7aa2-2ef3-ffbb-6f106edddb0c" style="opacity:0" class="_20-card">
+                        <div class="_20-number">
+                            <div class="text-21-regular light">24/7</div>
+                        </div>
+                        <div class="gap-5">
+                            <div class="text-32-regular dark-green">Regulatory Tracking</div>
+                            <div class="text-16-regular dark-green">stay updated on changes</div>
+                        </div>
+                    </div>
+                </div><img src="/assets/673a127729486b4e030b868a_rock01.avif" loading="eager" sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px" srcset="/assets/673a127729486b4e030b868a_rock01-p-500.avif 500w, /assets/673a127729486b4e030b868a_rock01-p-800.avif 800w, /assets/673a127729486b4e030b868a_rock01.avif 1730w" alt="" class="up-to-20-img"></div>
+        </div>
+    </section>
+`;
+  return parse(html);
 };

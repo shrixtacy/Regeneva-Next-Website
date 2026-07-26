@@ -1,99 +1,333 @@
-"use client";
+import parse from 'html-react-parser';
 
-import React, { useState } from "react";
+export const Navbar = () => {
+  const html = `<div class="global-css w-embed">
+        <style>
+            body {
+                font-size: 1.05vw;
+            }
 
-interface NavbarProps {
-  onOpenContact: () => void;
-}
+            /* Max Font Size */
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
+            @media screen and (min-width:1920px) {
+                body {
+                    font-size: 21.333333333333332px;
+                }
+            }
 
-  return (
-    <>
-      {/* Sticky Logo */}
-      <div className="sticky-logo">
-        <a href="/" aria-label="Saapro Home">
-          <svg width="100%" height="100%" viewBox="0 0 126 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M35.8494 20.2374C35.0023 20.2374 34.2467 20.1573 33.5827 19.997C32.9187 19.8367 32.3234 19.6306 31.7967 19.3788C31.2701 19.104 30.8007 18.7949 30.3886 18.4514C29.9993 18.108 29.6673 17.7645 29.3926 17.4211C28.778 16.6582 28.3204 15.7874 28.0196 14.8088C27.983 14.6895 28.0735 14.5704 28.1983 14.5704H30.7397C30.8178 14.5704 30.8876 14.6187 30.9176 14.6909C31.1441 15.2355 31.46 15.7106 31.8654 16.116C32.2547 16.5052 32.7584 16.8601 33.3766 17.1807C34.0177 17.5012 34.842 17.6615 35.8494 17.6615C37.4064 17.6615 38.5055 17.4096 39.1466 16.9059C39.8106 16.3793 40.1426 15.7725 40.1426 15.0856C40.1426 14.4903 39.8564 14.0324 39.284 13.7118C38.7344 13.3913 38.0361 13.1165 37.1889 12.8875C36.3646 12.6586 35.4602 12.441 34.4756 12.235C33.4911 12.0289 32.5752 11.7312 31.728 11.342C30.9038 10.9528 30.2054 10.4376 29.633 9.79648C29.0835 9.15537 28.8087 8.28529 28.8087 7.18625C28.8087 6.54514 28.9461 5.93837 29.2208 5.36596C29.4956 4.77064 29.9077 4.25546 30.4573 3.82043C31.0068 3.38539 31.6822 3.04194 32.4836 2.79007C33.3079 2.51531 34.2581 2.37793 35.3343 2.37793C36.1357 2.37793 36.8455 2.45807 37.4637 2.61835C38.1048 2.75573 38.6657 2.95035 39.1466 3.20221C39.6503 3.43118 40.0853 3.70594 40.4517 4.0265C40.818 4.32415 41.1386 4.63326 41.4134 4.95381C41.9587 5.64604 42.3696 6.42475 42.646 7.28994C42.6842 7.4095 42.5935 7.5297 42.468 7.5297H39.9213C39.8469 7.5297 39.7799 7.48592 39.7473 7.41912C39.5443 7.00338 39.2639 6.61665 38.9062 6.25893C38.5856 5.93837 38.1277 5.64072 37.5324 5.36596C36.9599 5.09119 36.2272 4.95381 35.3343 4.95381C34.6932 4.95381 34.1322 5.0225 33.6514 5.15988C33.1705 5.29727 32.7698 5.48044 32.4493 5.70941C32.1516 5.91548 31.9227 6.15589 31.7624 6.43065C31.625 6.68252 31.5563 6.93438 31.5563 7.18625C31.5563 7.78156 31.8311 8.2395 32.3806 8.56005C32.953 8.88061 33.6514 9.15537 34.4756 9.38433C35.3228 9.6133 36.2387 9.83082 37.2233 10.0369C38.2078 10.243 39.1122 10.5406 39.9365 10.9299C40.7837 11.3191 41.482 11.8457 42.0316 12.5097C42.604 13.1508 42.8902 14.0095 42.8902 15.0856C42.8902 15.7725 42.7414 16.4251 42.4437 17.0433C42.1461 17.6615 41.6996 18.211 41.1042 18.6919C40.5089 19.1727 39.7762 19.5505 38.9062 19.8252C38.0361 20.1 37.0172 20.2374 35.8494 20.2374Z" fill="#1a3323"/>
-            <path d="M51.125 20.2374C50.003 20.2374 48.9383 20.0199 47.9309 19.5848C46.9463 19.1269 46.0762 18.5087 45.3206 17.7302C44.5651 16.9288 43.9697 15.9786 43.5347 14.8796C43.0997 13.7805 42.8821 12.5899 42.8821 11.3077C42.8821 10.0254 43.0997 8.83481 43.5347 7.73577C43.9697 6.63672 44.5651 5.69796 45.3206 4.91947C46.0762 4.11808 46.9463 3.49987 47.9309 3.06483C48.9383 2.6069 50.003 2.37793 51.125 2.37793C52.2469 2.37793 53.1971 2.53821 53.9756 2.85876C54.7541 3.17932 55.3838 3.53422 55.8646 3.92346C56.3683 4.31271 56.7232 4.67905 56.9293 5.0225C57.1263 5.29829 57.2385 5.45544 57.266 5.49396C57.2703 5.49992 57.2771 5.50334 57.2844 5.50334C57.2969 5.50334 57.3071 5.49318 57.3071 5.48066V2.9103C57.3071 2.80597 57.3917 2.72138 57.496 2.72138H59.8658C59.9701 2.72138 60.0547 2.80597 60.0547 2.9103V19.705C60.0547 19.8094 59.9701 19.8939 59.8658 19.8939H57.496C57.3917 19.8939 57.3071 19.8094 57.3071 19.705V17.1687C57.3071 17.1563 57.2971 17.1463 57.2847 17.1463C57.2772 17.1463 57.2703 17.1499 57.2662 17.1562C57.2389 17.1971 57.1266 17.3655 56.9293 17.6615C56.7232 17.9821 56.3683 18.337 55.8646 18.7262C55.3838 19.0926 54.7541 19.436 53.9756 19.7566C53.1971 20.0771 52.2469 20.2374 51.125 20.2374ZM51.4684 17.6615C52.2927 17.6615 53.0597 17.5127 53.7695 17.215C54.4793 16.8945 55.0976 16.4594 55.6242 15.9099C56.1508 15.3375 56.5629 14.662 56.8606 13.8835C57.1583 13.1051 57.3071 12.2464 57.3071 11.3077C57.3071 10.3689 57.1583 9.51027 56.8606 8.73178C56.5629 7.95329 56.1508 7.28928 55.6242 6.73976C55.0976 6.16734 54.4793 5.7323 53.7695 5.43465C53.0597 5.11409 52.2927 4.95381 51.4684 4.95381C50.6441 4.95381 49.8771 5.11409 49.1673 5.43465C48.4575 5.7323 47.8393 6.16734 47.3127 6.73976C46.786 7.28928 46.3739 7.95329 46.0762 8.73178C45.7786 9.51027 45.6298 10.3689 45.6298 11.3077C45.6298 12.2464 45.7786 13.1051 46.0762 13.8835C46.3739 14.662 46.786 15.3375 47.3127 15.9099C47.8393 16.4594 48.4575 16.8945 49.1673 17.215C49.8771 17.5127 50.6441 17.6615 51.4684 17.6615Z" fill="#1a3323"/>
-            <path d="M69.34 20.2374C68.218 20.2374 67.1533 20.0199 66.1459 19.5848C65.1613 19.1269 64.2912 18.5087 63.5356 17.7302C62.78 16.9288 62.1847 15.9786 61.7497 14.8796C61.3146 13.7805 61.0971 12.5899 61.0971 11.3077C61.0971 10.0254 61.3146 8.83481 61.7497 7.73577C62.1847 6.63672 62.78 5.69796 63.5356 4.91947C64.2912 4.11808 65.1613 3.49987 66.1459 3.06483C67.1533 2.6069 68.218 2.37793 69.34 2.37793C70.4619 2.37793 71.4121 2.53821 72.1906 2.85876C72.9691 3.17932 73.5987 3.53422 74.0796 3.92346C74.5833 4.31271 74.9382 4.67905 75.1443 5.0225C75.3413 5.29829 75.4535 5.45544 75.481 5.49396C75.4853 5.49992 75.4921 5.50334 75.4994 5.50334C75.5119 5.50334 75.5221 5.49318 75.5221 5.48066V2.9103C75.5221 2.80597 75.6067 2.72138 75.711 2.72138H78.0808C78.1851 2.72138 78.2697 2.80597 78.2697 2.9103V19.705C78.2697 19.8094 78.1851 19.8939 78.0808 19.8939H75.711C75.6067 19.8939 75.5221 19.8094 75.5221 19.705V17.1687C75.5221 17.1563 75.5121 17.1463 75.4997 17.1463C75.4922 17.1463 75.4853 17.1499 75.4812 17.1562C75.4539 17.1971 75.3416 17.3655 75.1443 17.6615C74.9382 17.9821 74.5833 18.337 74.0796 18.7262C73.5987 19.0926 72.9691 19.436 72.1906 19.7566C71.4121 20.0771 70.4619 20.2374 69.34 20.2374ZM69.6834 17.6615C70.5077 17.6615 71.2747 17.5127 71.9845 17.215C72.6943 16.8945 73.3125 16.4594 73.8392 15.9099C74.3658 15.3375 74.7779 14.662 75.0756 13.8835C75.3732 13.1051 75.5221 12.2464 75.5221 11.3077C75.5221 10.3689 75.3732 9.51027 75.0756 8.73178C74.7779 7.95329 74.3658 7.28928 73.8392 6.73976C73.3125 6.16734 72.6943 5.7323 71.9845 5.43465C71.2747 5.11409 70.5077 4.95381 69.6834 4.95381C68.8591 4.95381 68.0921 5.11409 67.3823 5.43465C66.6725 5.7323 66.0543 6.16734 65.5276 6.73976C65.001 7.28928 64.5889 7.95329 64.2912 8.73178C63.9936 9.51027 63.8447 10.3689 63.8447 11.3077C63.8447 12.2464 63.9936 13.1051 64.2912 13.8835C64.5889 14.662 65.001 15.3375 65.5276 15.9099C66.0543 16.4594 66.6725 16.8945 67.3823 17.215C68.0921 17.5127 68.8591 17.6615 69.6834 17.6615Z" fill="#1a3323"/>
-            <path d="M80.3425 2.9103C80.3425 2.80597 80.427 2.72138 80.5314 2.72138H82.9011C83.0055 2.72138 83.0901 2.80597 83.0901 2.9103V5.44677C83.0901 5.45904 83.1 5.46899 83.1123 5.46899C83.1198 5.46899 83.1268 5.46526 83.1309 5.4589C83.1564 5.41918 83.2573 5.26227 83.4335 4.98816C83.6625 4.64471 84.0174 4.28981 84.4982 3.92346C85.0019 3.53422 85.6431 3.17932 86.4215 2.85876C87.2 2.53821 88.1502 2.37793 89.2722 2.37793C90.3941 2.37793 91.4474 2.6069 92.4319 3.06483C93.4394 3.49987 94.3209 4.11808 95.0765 4.91947C95.8321 5.69796 96.4274 6.63672 96.8624 7.73577C97.2975 8.83481 97.515 10.0254 97.515 11.3077C97.515 12.5899 97.2975 13.7805 96.8624 14.8796C96.4274 15.9786 95.8321 16.9288 95.0765 17.7302C94.3209 18.5087 93.4394 19.1269 92.4319 19.5848C91.4474 20.0199 90.3941 20.2374 89.2722 20.2374C88.1502 20.2374 87.2 20.0771 86.4215 19.7566C85.6431 19.436 85.0019 19.0926 84.4982 18.7262C84.0174 18.337 83.6625 17.9821 83.4335 17.6615C83.2569 17.3671 83.156 17.1989 83.1307 17.1569C83.1268 17.1502 83.1197 17.1463 83.112 17.1463C83.0999 17.1463 83.0901 17.1561 83.0901 17.1683V25.4822C83.0901 25.5865 83.0055 25.6711 82.9011 25.6711H80.5314C80.427 25.6711 80.3425 25.5865 80.3425 25.4822V2.9103ZM88.9287 17.6615C89.753 17.6615 90.5201 17.5127 91.2299 17.215C91.9397 16.8945 92.5579 16.4594 93.0845 15.9099C93.6111 15.3375 94.0233 14.662 94.3209 13.8835C94.6186 13.1051 94.7674 12.2464 94.7674 11.3077C94.7674 10.3689 94.6186 9.51027 94.3209 8.73178C94.0233 7.95329 93.6111 7.28928 93.0845 6.73976C92.5579 6.16734 91.9397 5.7323 91.2299 5.43465C90.5201 5.11409 89.753 4.95381 88.9287 4.95381C88.1045 4.95381 87.3374 5.11409 86.6276 5.43465C85.9178 5.7323 85.2996 6.16734 84.773 6.73976C84.2464 7.28928 83.8342 7.95329 83.5366 8.73178C83.2389 9.51027 83.0901 10.3689 83.0901 11.3077C83.0901 12.2464 83.2389 13.1051 83.5366 13.8835C83.8342 14.662 84.2464 15.3375 84.773 15.9099C85.2996 16.4594 85.9178 16.8945 86.6276 17.215C87.3374 17.5127 88.1045 17.6615 88.9287 17.6615Z" fill="#1a3323"/>
-            <path d="M98.5574 2.9103C98.5574 2.80597 98.642 2.72138 98.7464 2.72138H101.116C101.22 2.72138 101.305 2.80597 101.305 2.9103V5.44747C101.305 5.45936 101.315 5.46899 101.327 5.46899C101.334 5.46899 101.342 5.46466 101.346 5.45772C101.642 4.91289 102.03 4.43582 102.507 4.0265C102.919 3.66015 103.457 3.32815 104.121 3.03049C104.785 2.70993 105.621 2.54966 106.629 2.54966L107.644 2.54966C107.749 2.54966 107.833 2.63424 107.833 2.73858V5.10835C107.833 5.21268 107.749 5.29727 107.644 5.29727L106.629 5.29727C105.85 5.29727 105.129 5.43465 104.465 5.70941C103.824 5.96127 103.263 6.32762 102.782 6.80845C102.324 7.26638 101.958 7.82735 101.683 8.49136C101.431 9.13247 101.305 9.84227 101.305 10.6208V19.705C101.305 19.8094 101.22 19.8939 101.116 19.8939H98.7464C98.642 19.8939 98.5574 19.8094 98.5574 19.705V2.9103Z" fill="#1a3323"/>
-            <path d="M116.496 20.2374C115.213 20.2374 114.023 20.0199 112.924 19.5848C111.825 19.1269 110.875 18.5087 110.073 17.7302C109.295 16.9288 108.676 15.9786 108.219 14.8796C107.783 13.7805 107.566 12.5899 107.566 11.3077C107.566 10.0254 107.783 8.83481 108.219 7.73577C108.676 6.63672 109.295 5.69796 110.073 4.91947C110.875 4.11808 111.825 3.49987 112.924 3.06483C114.023 2.6069 115.213 2.37793 116.496 2.37793C117.778 2.37793 118.969 2.6069 120.068 3.06483C121.167 3.49987 122.105 4.11808 122.884 4.91947C123.685 5.69796 124.303 6.63672 124.739 7.73577C125.196 8.83481 125.426 10.0254 125.426 11.3077C125.426 12.5899 125.196 13.7805 124.739 14.8796C124.303 15.9786 123.685 16.9288 122.884 17.7302C122.105 18.5087 121.167 19.1269 120.068 19.5848C118.969 20.0199 117.778 20.2374 116.496 20.2374ZM116.496 17.6615C117.389 17.6615 118.213 17.5127 118.969 17.215C119.724 16.8945 120.377 16.4594 120.926 15.9099C121.476 15.3375 121.899 14.662 122.197 13.8835C122.518 13.1051 122.678 12.2464 122.678 11.3077C122.678 10.3689 122.518 9.51027 122.197 8.73178C121.899 7.95329 121.476 7.28928 120.926 6.73976C120.377 6.16734 119.724 5.7323 118.969 5.43465C118.213 5.11409 117.389 4.95381 116.496 4.95381C115.603 4.95381 114.778 5.11409 114.023 5.43465C113.267 5.7323 112.615 6.16734 112.065 6.73976C111.516 7.28928 111.081 7.95329 110.76 8.73178C110.462 9.51027 110.314 10.3689 110.314 11.3077C110.314 12.2464 110.462 13.1051 110.76 13.8835C111.081 14.662 111.516 15.3375 112.065 15.9099C112.615 16.4594 113.267 16.8945 114.023 17.215C114.778 17.5127 115.603 17.6615 116.496 17.6615Z" fill="#1a3323"/>
-            <path fillRule="evenodd" clipRule="evenodd" d="M0 11.3062L4.52921e-07 0.944604C4.75725e-07 0.422914 0.422913 1.84861e-08 0.944603 4.12899e-08L11.3062 4.94211e-07C11.3062 6.24426 6.24426 11.3062 0 11.3062ZM22.6125 11.3062C22.6125 5.06198 17.5504 2.13188e-06 11.3062 4.94211e-07V11.3062H0C-5.4589e-07 17.5504 5.06197 22.6125 11.3062 22.6125H21.6679C22.1895 22.6125 22.6125 22.1895 22.6125 21.6679V11.3062ZM22.608 11.3062H11.3062V22.6125C11.3062 16.3697 16.3658 11.3086 22.608 11.3062Z" fill="#54BF44"/>
-          </svg>
-        </a>
-      </div>
+            @media screen and (max-width: 479px) {
+                body {
+                    font-size: 4.10256vw;
+                    /*16px*/
+                }
+            }
 
-      {/* Menu floating button & trigger */}
-      <div className="menu-wrapper">
-        <div className="contact-btn-wrap test" style={{ position: "fixed", top: "2rem", right: "2.5rem", zIndex: 99, display: "flex", gap: "1rem", alignItems: "center" }}>
-          <button 
-            onClick={onOpenContact} 
-            className="contact-btn w-inline-block" 
-            style={{ 
-              background: "#1a3323", 
-              color: "#ffffff", 
-              padding: "0.75rem 1.5rem", 
-              borderRadius: "2rem", 
-              border: "none", 
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              fontSize: "0.9rem",
-              fontWeight: 500
-            }}
-          >
-            <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#54BF44", display: "inline-block" }}></span>
-            <span>Contact us</span>
-          </button>
-          
-          <button 
-            onClick={() => setMenuOpen(!menuOpen)} 
-            style={{ 
-              background: "#1a3323", 
-              color: "#ffffff", 
-              padding: "0.75rem 1rem", 
-              borderRadius: "2rem", 
-              border: "none", 
-              cursor: "pointer",
-              fontSize: "0.9rem"
-            }}
-            aria-label="Toggle navigation menu"
-          >
-            {menuOpen ? "✕ Close" : "☰ Menu"}
-          </button>
+            html {
+                font-size: 1.333rem;
+            }
+
+            @media screen and (max-width:1920px) {
+                html {
+                    font-size: calc(0.0009999999999998899rem + 1.11vw);
+                }
+            }
+
+            @media screen and (max-width:1440px) {
+                html {
+                    font-size: calc(0.0005411030176898923rem + 1.1105098855359001vw);
+                }
+            }
+
+            @media screen and (max-width:479px) {
+                html {
+                    font-size: calc(-0.009615384615384803rem + 4.307692307692308vw);
+                }
+            }
+
+            @media screen and (max-width:375px) {
+                html {
+                    font-size: calc(-0.00267379679144385rem + 4.27807486631016vw);
+                }
+            }
+
+            body {
+                overscroll-behavior: none;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                -o-font-smoothing: antialiased;
+            }
+        </style>
+    </div>
+<div class="sticky-logo">
+        <div class="logo-saapro w-embed" style="display:flex; align-items:center;">
+            <span style="font-weight:700; color:white; font-size:24px; font-family:sans-serif;">ReGeneva</span><span style="color:#54BF44; font-size:24px; font-weight:700;">.</span>
         </div>
-      </div>
-
-      {/* Menu overlay modal */}
-      {menuOpen && (
-        <div style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100vw",
-          height: "100vh",
-          background: "#1a3323",
-          zIndex: 999,
-          color: "#f4efe6",
-          padding: "5rem 3rem",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center"
-        }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", fontSize: "2rem" }}>
-            <a href="#Our-Solution" onClick={() => setMenuOpen(false)} style={{ color: "#f4efe6", textDecoration: "none" }}>Our Solution</a>
-            <a href="#why-saapro" onClick={() => setMenuOpen(false)} style={{ color: "#f4efe6", textDecoration: "none" }}>Why Saapro</a>
-            <a href="#how-it-works" onClick={() => setMenuOpen(false)} style={{ color: "#f4efe6", textDecoration: "none" }}>How it Works</a>
-            <a href="#who-is-for" onClick={() => setMenuOpen(false)} style={{ color: "#f4efe6", textDecoration: "none" }}>Who Saapro is For</a>
-            <a href="#competitive-advantage" onClick={() => setMenuOpen(false)} style={{ color: "#f4efe6", textDecoration: "none" }}>Comparison</a>
-            <a href="#" onClick={() => { setMenuOpen(false); onOpenContact(); }} style={{ color: "#54BF44", textDecoration: "none" }}>Contact Us</a>
-          </div>
+    </div>
+<div data-w-id="875318b3-fc0c-7cc9-02b5-1a7ac8c38c7b" class="contact-overlay">
+        <div data-w-id="0a27dd6e-aaa3-a68c-b8e4-2a535a398d4f" class="contact-overlay-bg"></div>
+        <div data-w-id="06f4252d-27f1-228b-d73b-4a2dc368c50d" class="contact-item">
+            <div data-w-id="1f63968d-2d58-0a18-4b76-0012a61736e4" class="contact-content">
+                <div data-w-id="cb923945-5e32-4f79-c00e-bb2a00d2b750" class="close-contact"><img src="/assets/673a60f198fc4326f51d4a5e_Group%20155.svg" loading="lazy" alt="" class="cross-icon"></div>
+                <div class="contact-heading-wrap">
+                    <div class="contact-heading">Get in<br>touch</div>
+                    <div class="text-15-regular _w-90">We're here to help you explore how our ESG solutions can support and improve your sustainability goals. If you have any questions or want to dive deeper into our services, get in touch with us directly!</div>
+                </div>
+                <div class="divider-contact"></div>
+                <div class="div-block-4">
+                    <div class="gap-6">
+                        <div class="text-15-regular _w-90">For all inquires</div><a href="mailto:contact@regeneva.com" class="link-green">contact@regeneva.com</a></div>
+                    <div class="gap-6">
+                        <div class="text-15-regular _w-90">Contact number</div><a href="tel:+971551755470" class="link-green">+971551755470</a></div>
+                </div>
+            </div>
         </div>
-      )}
-    </>
-  );
+    </div>
+<div class="menu-wrapper">
+        <div data-w-id="12c2b125-4403-73d3-19ab-3ec9cbfd01c7" class="menu">
+            <div data-w-id="382ef346-68af-652c-df0d-19b3fd7e5a95" class="menu-icon close">
+                <div data-w-id="c1dc1309-11e1-ee5f-be02-fc193a98c671" class="dot-top"></div>
+                <div data-w-id="07963aa2-0c42-f0d5-21c2-4e7fcc86eb47" class="dot-left"></div>
+                <div data-w-id="12bf3617-52d2-4ca1-6b95-63cce7c82172" class="dot-right"></div>
+                <div data-w-id="4deda6eb-a929-b40e-232f-e3dfcb7f3594" class="dot-bottom"></div>
+                <div class="mobile-menu-bg"></div>
+            </div>
+            <div data-w-id="f137d37f-c651-8431-441f-0d1339ea4e19" class="menu-icon open">
+                <div data-w-id="f137d37f-c651-8431-441f-0d1339ea4e1a" class="dot-top"></div>
+                <div data-w-id="f137d37f-c651-8431-441f-0d1339ea4e1b" class="dot-left"></div>
+                <div data-w-id="f137d37f-c651-8431-441f-0d1339ea4e1c" class="dot-right"></div>
+                <div data-w-id="f137d37f-c651-8431-441f-0d1339ea4e1d" class="dot-bottom"></div>
+                <div class="mobile-menu-bg"></div>
+            </div>
+            <div data-w-id="f71e2ed1-b439-5ad9-6b5d-b2564d03fdde" class="menu-links"><a href="/" aria-current="page" class="menu_large-text w--current">ESG Solutions</a><a href="#" class="nav-link">Academy</a><a href="#" class="nav-link">Marketplace</a><a href="#" class="nav-link">Resources</a>
+                <a href="#" class="nav-link last">About Us</a><a href="#Contacts" class="nav-link last">Contact</a>
+                    <div class="menu_spacer-8"></div></div>
+            <div class="contact-btn-wrap test">
+                <a data-w-id="30a9028c-5614-c4de-be82-aadb549d65ab" href="#" class="contact-btn w-inline-block">
+                    <div class="dot-contact-btn"></div>
+                    <div>Contact us</div>
+                </a>
+            </div>
+            <div data-w-id="dd984442-e46b-83e8-86f1-0632dedf5b0b" class="dots-decor">
+                <div class="menu_mask-for-dots">
+                    <div class="menu_mask-bg"></div>
+                </div>
+                <div class="dot-gray mobile-hide"></div>
+                <div class="dot-gray mobile-hide"></div>
+                <div class="dot-gray mobile-hide"></div>
+                <div class="dot-gray mobile-hide"></div>
+                <div class="dot-gray mobile-hide"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="dot-gray"></div>
+                <div class="menu_dots-wrapper">
+                    <div>
+                        <div class="w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 195 370" fill="none">
+<circle cx="3" cy="3" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="3" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="3" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="3" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="3" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="3" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="3" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="3" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="29" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="29" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="29" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="29" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="29" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="29" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="29" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="29" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="55" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="55" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="55" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="55" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="55" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="55" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="55" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="55" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="81" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="81" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="81" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="81" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="81" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="81" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="81" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="81" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="107" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="107" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="107" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="107" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="107" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="107" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="107" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="107" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="133" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="133" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="133" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="133" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="133" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="133" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="133" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="133" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="159" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="159" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="159" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="159" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="159" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="159" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="159" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="159" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="185" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="185" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="185" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="185" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="185" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="185" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="185" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="185" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="211" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="211" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="211" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="211" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="211" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="211" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="211" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="211" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="237" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="237" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="237" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="237" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="237" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="237" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="237" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="237" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="263" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="263" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="263" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="263" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="263" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="263" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="263" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="263" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="289" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="289" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="289" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="289" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="289" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="289" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="289" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="289" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="315" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="315" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="315" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="315" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="315" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="315" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="315" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="315" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="341" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="341" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="341" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="341" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="341" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="341" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="341" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="341" r="3" fill="#C7BFAC"></circle>
+<circle cx="3" cy="367" r="3" fill="#C7BFAC"></circle>
+<circle cx="30" cy="367" r="3" fill="#C7BFAC"></circle>
+<circle cx="57" cy="367" r="3" fill="#C7BFAC"></circle>
+<circle cx="84" cy="367" r="3" fill="#C7BFAC"></circle>
+<circle cx="111" cy="367" r="3" fill="#C7BFAC"></circle>
+<circle cx="138" cy="367" r="3" fill="#C7BFAC"></circle>
+<circle cx="165" cy="367" r="3" fill="#C7BFAC"></circle>
+<circle cx="192" cy="367" r="3" fill="#C7BFAC"></circle>
+</svg></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+`;
+  return parse(html);
 };
