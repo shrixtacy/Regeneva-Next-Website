@@ -1,7 +1,7 @@
 import parse from 'html-react-parser';
 
 export const ComparisonSection = () => {
-  const html = `<section id="competitive-advantage" class="section dark-beige comparison">
+    const html = `<section id="competitive-advantage" class="section dark-beige comparison">
         <div class="w-layout-blockcontainer container w-container">
             <div class="comparison-wrap">
                 <div class="comparison-heading">
@@ -19,7 +19,7 @@ export const ComparisonSection = () => {
                     <div class="tabs-content w-tab-content">
                         <div data-w-tab="Tab 1" class="w-tab-pane">
                             <div class="table-grid">
-                                <div></div><img loading="lazy" src="/assets/673a4962257e811cb6c9e7e6_logo-dark.svg" alt="" class="logo-dark">
+                                <div></div><div class="logo-dark" style="display:flex; align-items:center; justify-content:center;"><span style="font-weight:700; color:#322D24; font-size:20px; font-family:sans-serif;">ReGeneva</span><span style="color:#54BF44; font-size:20px; font-weight:700;">.</span></div>
                                 <div class="grid-category-column">Strategy</div>
                                 <div class="grid-category-column">Maturity</div>
                                 <div class="grid-category-column">Decarbonization</div>
@@ -63,7 +63,7 @@ export const ComparisonSection = () => {
                         </div>
                         <div data-w-tab="Tab 2" class="w-tab-pane w--tab-active">
                             <div class="table-grid">
-                                <div></div><img loading="lazy" src="/assets/673a4962257e811cb6c9e7e6_logo-dark.svg" alt="" class="logo-dark">
+                                <div></div><div class="logo-dark" style="display:flex; align-items:center; justify-content:center;"><span style="font-weight:700; color:#322D24; font-size:20px; font-family:sans-serif;">ReGeneva</span><span style="color:#54BF44; font-size:20px; font-weight:700;">.</span></div>
                                 <div class="grid-category-column">BRSR / CSRD</div>
                                 <div class="grid-category-column">GRI / SASB</div>
                                 <div class="grid-category-column">Assurance</div>
@@ -111,5 +111,5 @@ export const ComparisonSection = () => {
         </div>
     </section>
 `;
-  return parse(html);
+    return parse(html);
 };

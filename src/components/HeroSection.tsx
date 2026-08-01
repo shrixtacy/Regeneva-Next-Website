@@ -1,14 +1,50 @@
+"use client";
 import parse from 'html-react-parser';
+import { useEffect } from 'react';
 
 export const HeroSection = () => {
+  useEffect(() => {
+    let ticking = false;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let animId: number;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      targetX = (window.innerWidth / 2 - e.clientX) * 0.02;
+      targetY = (window.innerHeight / 2 - e.clientY) * 0.02;
+    };
+
+    const animate = () => {
+      // Lerp for ultra-smooth interpolation
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+
+      const img = document.getElementById('floating-hero-img');
+      if (img) {
+        img.style.transform = `scale(1.3) translate3d(${currentX}px, ${currentY}px, 0)`;
+      }
+      animId = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    animId = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animId);
+    };
+  }, []);
+
   const html = `<div data-w-id="672fd4f6-3c9a-781d-6049-c474e0cfa3af" class="start">
         <section id="hero" class="section beige hero">
-            <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(0.97, 0.97, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0.97, 0.97, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0.97, 0.97, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0.97, 0.97, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="w-layout-blockcontainer container hero w-container">
+            <div class="w-layout-blockcontainer container hero w-container">
                 <div class="inner-wrapper-hero">
                     <div class="green-element-overlay">
                         <div class="dark-green-overlay-top"></div>
                         <div class="dark-green-overlay"></div>
-                        <div style="opacity:0;-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(-45deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(-45deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(-45deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(-45deg) skew(0, 0)" class="green-circles">
+                        <div style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(-45deg) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(-45deg) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(-45deg) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(-45deg) skew(0, 0)" class="green-circles">
                             <div class="green-dot"></div>
                             <div class="green-dot"></div>
                             <div class="green-dot"></div>
@@ -18,10 +54,8 @@ export const HeroSection = () => {
                     <div data-w-id="9dbda387-80ad-348b-eb23-191135b24f45" class="hero-wrapper">
                         <h1 class="h1 _w-808">Simplifying ESG. Amplifying Action.</h1>
                         <div class="text-16-regular" style="position: absolute; top: 10%; right: 0; text-align: right; max-width: 400px; padding-right: 2rem;">Hello, we're ReGeneva - your partner in ESG transformation. We help organizations upskill and scale sustainability through practical solutions and purpose-driven services.</div>
-                        <div style="opacity:0" class="main-greenery-wrap">
-                            <div class="greenery-wrap">
-                                <div class="main-greenery-img" data-w-id="0c463846-5056-b5e2-73fd-eafb7137b18a" data-animation-type="lottie" data-src="/assets/673fc1912999a3f2d05e3fc9_butterfly%20main.json" data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="0" data-duration="2.8" data-loading="eager"></div>
-                            </div>
+                        <div class="main-greenery-wrap" style="display: flex; justify-content: center; align-items: center; height: 100%; width: 100%;">
+                            <img id="floating-hero-img" src="/assets/hero-image.png" alt="ReGeneva Hero Design" style="max-width: 100%; max-height: 80vh; object-fit: contain; z-index: 10; position: relative; opacity: 1; transform: scale(1.3); transition: transform 0.1s ease-out;" />
                         </div>
                         <div class="hero-bottom-text">
                             <div data-w-id="4c4e508b-eb58-4012-49ac-2fb55b9ac657" class="scroll-down">
@@ -34,11 +68,11 @@ export const HeroSection = () => {
                         <a href="https://www.linkedin.com/company/regeneva/" target="_blank" class="social-link-wrap w-inline-block">
                             <div class="social-link-icons ln"><img src="/assets/67364bfdf42bcd92a21468f6_ln.svg" loading="lazy" alt="" class="social-link-icon ln"><img src="/assets/67364bfdf42bcd92a21468f6_ln.svg" loading="lazy" alt="" class="social-link-icon first ln"></div>
                         </a>
-                        <a href="tel:+971551755470" class="social-link-wrap w-inline-block">
-                            <div class="social-link-icons phone"><img src="/assets/673a65bf2dd4689bf794108e_phone.svg" loading="lazy" alt="" class="social-link-icon first phone"><img src="/assets/673a65bf2dd4689bf794108e_phone.svg" loading="lazy" alt="" class="social-link-icon phone"></div>
+                        <a href="tel:+919114328561" class="social-link-wrap w-inline-block">
+                            <div class="social-img-wrap"><img src="/assets/673a65bf2dd4689bf794108e_phone.svg" loading="lazy" alt="" class="img-ico"></div>
                         </a>
-                        <a href="mailto:contact@regeneva.com" class="social-link-wrap w-inline-block">
-                            <div class="social-link-icons"><img src="/assets/673a65b253821f64273ae8c7_mail%20(1).svg" loading="lazy" alt="" class="social-link-icon first"><img src="/assets/673a65b253821f64273ae8c7_mail%20(1).svg" loading="lazy" alt="" class="social-link-icon"></div>
+                        <a href="mailto:hello@regeneva.co" class="social-link-wrap w-inline-block">
+                            <div class="social-img-wrap"><img src="/assets/673a65b253821f64273ae8c7_mail%20(1).svg" loading="lazy" alt="" class="img-ico"></div>
                         </a>
                     </div>
                 </div>

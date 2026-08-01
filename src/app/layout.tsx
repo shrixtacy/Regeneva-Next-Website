@@ -1,14 +1,22 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import "./globals.css";
+import { SmoothScrollProvider } from "../components/providers/SmoothScrollProvider";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
 
 export const metadata: Metadata = {
-  title: "Saapro – Revolutionary Mobile Waste Management Solution",
+  title: "ReGeneva – Elevate Your Sustainability Journey Today",
   description:
-    "Total waste disposal of all types of waste with unlimited capacity. Disposal technology for governments &amp; municipalities, real estate developers, manufacturing &amp; industrial sectors.",
+    "Driving sustainable value with comprehensive ESG solutions, Net Zero roadmaps, BRSR & CSRD reporting, and sustainability advisory.",
   openGraph: {
-    title: "Saapro – Revolutionary Mobile Waste Management Solution",
+    title: "ReGeneva – Driving Sustainable Value",
     description:
-      "Total waste disposal of all types of waste with unlimited capacity.",
+      "Driving sustainable value with comprehensive ESG solutions, Net Zero roadmaps, and sustainability advisory.",
     images: [
       "/assets/6738e85481d888807bed36d9_badge.webp",
     ],
@@ -16,9 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Saapro – Revolutionary Mobile Waste Management Solution",
+    title: "ReGeneva – Driving Sustainable Value",
     description:
-      "Total waste disposal of all types of waste with unlimited capacity.",
+      "Driving sustainable value with comprehensive ESG solutions, Net Zero roadmaps, and sustainability advisory.",
     images: [
       "/assets/6738e85481d888807bed36d9_badge.webp",
     ],
@@ -34,7 +42,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      data-wf-domain="www.saapro.ae"
+      data-wf-domain="www.regeneva.com"
       data-wf-page="6733a9fa15c9b31fb9dd0595"
       data-wf-site="6733a9fa15c9b31fb9dd058e"
     >
@@ -68,10 +76,10 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-smooth iframe { pointer-events: none; }
 
-[text-split-H1] { opacity: 0; }
-html.w-editor [text-split-H1] { opacity: 1; }
+[tons-40] { opacity: 1 !important; }
+[text-split-H1] { opacity: 1; }
 [less-20] { opacity: 0; }
-[tons-40] { opacity: 0; }
+html.w-editor [text-split-H1] { opacity: 1; }
 
 .word { overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; transform-origin: bottom; position: relative; }
 .line-mask { position: absolute; top: 0; right: 0; background-color: #263228; opacity: 0.8; height: 105%; width: 105%; z-index: 2; }
@@ -108,7 +116,9 @@ html.w-editor [text-split-H1] { opacity: 1; }
         />
       </head>
       <body className="body" suppressHydrationWarning>
-        {children}
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
 
         {/* External scripts - loaded in order like the original */}
         <Script
@@ -144,27 +154,6 @@ html.w-editor [text-split-H1] { opacity: 1; }
           strategy="afterInteractive"
         />
         <Script
-          src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="lenis-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-let lenis;
-if (typeof Webflow !== 'undefined' && Webflow.env("editor") === undefined) {
-  lenis = new Lenis({ lerp: 0.2, wheelMultiplier: 0.6, gestureOrientation: "vertical", normalizeWheel: false, smoothTouch: false });
-  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
-}
-$("[data-lenis-start]").on("click", function() { lenis.start(); });
-$("[data-lenis-stop]").on("click", function() { lenis.stop(); });
-$("[data-lenis-toggle]").on("click", function() { $(this).toggleClass("stop-scroll"); if ($(this).hasClass("stop-scroll")) { lenis.stop(); } else { lenis.start(); } });
-`,
-          }}
-        />
-        <Script
           src="https://unpkg.com/split-type"
           strategy="afterInteractive"
         />
@@ -181,48 +170,73 @@ $("[data-lenis-toggle]").on("click", function() { $(this).toggleClass("stop-scro
           strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
-window.addEventListener("DOMContentLoaded", function() {
-  if (typeof SplitType === 'undefined' || typeof gsap === 'undefined') return;
-  
+var retryCount = 0;
+(function initAnimations() {
+  if (typeof SplitType === 'undefined' || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    if (retryCount++ < 10) setTimeout(initAnimations, 200);
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Configure ScrollTrigger for Lenis smooth scroll
+  if (window.lenis) {
+    ScrollTrigger.scrollerProxy(document.documentElement, {
+      scrollTop: function(value) {
+        if (arguments.length) {
+          window.lenis.scrollTo(value, { immediate: true });
+        }
+        return window.lenis.scroll;
+      },
+      getBoundingClientRect: function() {
+        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+      }
+    });
+
+    ScrollTrigger.defaults({ scroller: document.documentElement });
+  }
+
+  // Text splitting
   var typeSplitH1 = new SplitType("[text-split-H1]", { types: "words, chars", tagName: "span" });
   var typeSplitLess20 = new SplitType("[less-20]", { types: "words, chars", tagName: "span" });
   var typeSplitTons40 = new SplitType("[tons-40]", { types: "words, chars", tagName: "span" });
-  
+
   function createScrollTrigger(triggerElement, timeline, startPosition) {
     ScrollTrigger.create({ trigger: triggerElement, start: startPosition, onEnter: function() { timeline.play(); } });
   }
-  
+
   $("[letters-slide-up-H1]").each(function() {
     var tl = gsap.timeline({ paused: true });
-    tl.from($(this).find(".char"), { yPercent: 120, duration: 0.6, ease: "power3.out", stagger: { amount: 0.3 }, delay: 0.5 });
+    tl.from($(this).find(".char"), { yPercent: 120, duration: 0.6, ease: "power3.out", stagger: { amount: 0.3 }, delay: 0.5, force3D: true });
     createScrollTrigger($(this), tl, "top 100%");
   });
-  
+
   $("[less-20]").each(function() {
     var tl = gsap.timeline({ paused: true });
-    tl.from($(this).find(".char"), { yPercent: 120, duration: 0.6, ease: "power3.out", stagger: { amount: 0.3 }, delay: 0.5 });
+    tl.from($(this).find(".char"), { yPercent: 120, duration: 0.6, ease: "power3.out", stagger: { amount: 0.3 }, delay: 0.5, force3D: true });
     createScrollTrigger(".intro-numbers-wrap", tl, "bottom-=50% bottom");
   });
-  
+
   $("[tons-40]").each(function() {
     var tl = gsap.timeline({ paused: true });
-    tl.from($(this).find(".char"), { yPercent: 120, duration: 0.6, ease: "power3.out", stagger: { amount: 0.3 }, delay: 0.5 });
+    tl.from($(this).find(".char"), { yPercent: 120, duration: 0.6, ease: "power3.out", stagger: { amount: 0.3 }, delay: 0.5, force3D: true });
     createScrollTrigger(".intro-numbers-wrap", tl, "bottom-=25% bottom");
   });
-  
-  gsap.set("[text-split-H1], [less-20], [tons-40]", { opacity: 1 });
-});
 
-// Intro text word mask animation
-setTimeout(function() {
-  if (typeof SplitType === 'undefined' || typeof gsap === 'undefined') return;
-  var typeSplit2 = new SplitType(".text-63-regular.intro", { types: "lines, words" });
-  $(".word").append("<div class='line-mask'></div>");
-  gsap.registerPlugin(ScrollTrigger);
-  var allMasks = $(".word").map(function() { return $(this).find(".line-mask"); }).get();
-  var tl = gsap.timeline({ scrollTrigger: { trigger: ".start", start: "bottom-=5% bottom", end: "bottom+=15% bottom", scrub: true } });
-  tl.to(allMasks, { width: "0%", duration: 0.5, stagger: 0.5 });
-}, 500);
+  gsap.set("[text-split-H1], [less-20], [tons-40]", { opacity: 1 });
+
+  // Intro text word mask animation
+  setTimeout(function() {
+    var typeSplit2 = new SplitType(".text-63-regular.intro", { types: "lines, words" });
+    $(".word").append("<div class='line-mask'></div>");
+    var allMasks = $(".word").map(function() { return $(this).find(".line-mask"); }).get();
+    var tl = gsap.timeline({ scrollTrigger: { trigger: ".start", start: "bottom-=5% bottom", end: "bottom+=15% bottom", scrub: 0.5 } });
+    tl.to(allMasks, { width: "0%", duration: 0.5, stagger: 0.5 });
+  }, 300);
+
+  // Refresh all triggers after everything is set up
+  setTimeout(function() { ScrollTrigger.refresh(); }, 500);
+})();
 `,
           }}
         />

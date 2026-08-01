@@ -56,10 +56,58 @@ export const Navbar = () => {
                 -moz-osx-font-smoothing: grayscale;
                 -o-font-smoothing: antialiased;
             }
+
+            .dropdown-wrapper {
+                position: relative;
+                display: block;
+            }
+
+            .dropdown-content {
+                display: grid;
+                grid-template-rows: 0fr;
+                transition: grid-template-rows 0.3s ease-in-out;
+            }
+
+            .dropdown-content-inner {
+                overflow: hidden;
+                padding-left: 15px; /* Slight indent for sub-items */
+            }
+
+            .dropdown-wrapper:hover .dropdown-content {
+                grid-template-rows: 1fr;
+            }
+
+            .dropdown-link {
+                color: inherit;
+                padding: 10px 15px 10px 25px;
+                text-decoration: none;
+                display: block;
+                font-size: 15px;
+                font-family: inherit;
+                transition: all 0.2s ease;
+                line-height: 1.4;
+                position: relative;
+            }
+
+            .dropdown-link::before {
+                content: '';
+                position: absolute;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 6px;
+                height: 6px;
+                background-color: #54BF44;
+                border-radius: 50%;
+            }
+
+            .dropdown-link:hover {
+                color: #54BF44;
+            }
         </style>
     </div>
 <div class="sticky-logo">
-        <div class="logo-saapro w-embed" style="display:flex; align-items:center;">
+        <div class="logo-regeneva w-embed" style="display:flex; align-items:center;">
             <span style="font-weight:700; color:white; font-size:24px; font-family:sans-serif;">ReGeneva</span><span style="color:#54BF44; font-size:24px; font-weight:700;">.</span>
         </div>
     </div>
@@ -75,9 +123,9 @@ export const Navbar = () => {
                 <div class="divider-contact"></div>
                 <div class="div-block-4">
                     <div class="gap-6">
-                        <div class="text-15-regular _w-90">For all inquires</div><a href="mailto:contact@regeneva.com" class="link-green">contact@regeneva.com</a></div>
+                        <div class="text-15-regular _w-90">For all inquiries</div><a href="mailto:hello@regeneva.co" class="link-green">hello@regeneva.co</a></div>
                     <div class="gap-6">
-                        <div class="text-15-regular _w-90">Contact number</div><a href="tel:+971551755470" class="link-green">+971551755470</a></div>
+                        <div class="text-15-regular _w-90">Contact number</div><a href="tel:+919114328561" class="link-green">+91 9114 328561</a></div>
                 </div>
             </div>
         </div>
@@ -98,9 +146,53 @@ export const Navbar = () => {
                 <div data-w-id="f137d37f-c651-8431-441f-0d1339ea4e1d" class="dot-bottom"></div>
                 <div class="mobile-menu-bg"></div>
             </div>
-            <div data-w-id="f71e2ed1-b439-5ad9-6b5d-b2564d03fdde" class="menu-links"><a href="/" aria-current="page" class="menu_large-text w--current">ESG Solutions</a><a href="#" class="nav-link">Academy</a><a href="#" class="nav-link">Marketplace</a><a href="#" class="nav-link">Resources</a>
-                <a href="#" class="nav-link last">About Us</a><a href="#Contacts" class="nav-link last">Contact</a>
-                    <div class="menu_spacer-8"></div></div>
+            <div data-w-id="f71e2ed1-b439-5ad9-6b5d-b2564d03fdde" class="menu-links">
+                <a href="/" class="menu_large-text">Home</a>
+                <div class="dropdown-wrapper">
+                    <a href="/esg-solutions" class="nav-link" style="display: inline-block;">ESG Solutions</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-content-inner">
+                            <a href="#" class="dropdown-link">ESG Consulting & Advisory</a>
+                            <a href="#" class="dropdown-link">Carbon, Climate & Net Zero</a>
+                            <a href="#" class="dropdown-link">ESG Reporting & Disclosure</a>
+                            <a href="#" class="dropdown-link">ESG Assurance, Ratings & Compliance</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown-wrapper">
+                    <a href="/academy" class="nav-link" style="display: inline-block;">Academy</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-content-inner">
+                            <a href="/academy/courses?category=professional" class="dropdown-link">Professional Courses & Certifications</a>
+                            <a href="/academy/courses?category=corporate" class="dropdown-link">Corporate Learning & Training</a>
+                            <a href="/academy/courses?category=masterclass" class="dropdown-link">Workshops & Masterclasses</a>
+                            <a href="/academy/courses" class="dropdown-link">View All Courses</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="nav-link">Marketplace</a>
+                <div class="dropdown-wrapper">
+                    <a href="/resources" class="nav-link" style="display: inline-block;">Resources</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-content-inner">
+                            <a href="/resources/blogs" class="dropdown-link">Blogs</a>
+                            <a href="/resources/insights" class="dropdown-link">Insights</a>
+                            <a href="/resources/case-studies" class="dropdown-link">Case Studies</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown-wrapper">
+                    <a href="/company" class="nav-link" style="display: inline-block;">Company</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-content-inner">
+                            <a href="/company/about-us" class="dropdown-link">About Us</a>
+                            <a href="/company/contact" class="dropdown-link">Contact Us</a>
+                            <a href="/company/clients" class="dropdown-link">Clients</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu_spacer-8"></div>
+            </div>
             <div class="contact-btn-wrap test">
                 <a data-w-id="30a9028c-5614-c4de-be82-aadb549d65ab" href="#" class="contact-btn w-inline-block">
                     <div class="dot-contact-btn"></div>
@@ -116,11 +208,6 @@ export const Navbar = () => {
                 <div class="dot-gray mobile-hide"></div>
                 <div class="dot-gray mobile-hide"></div>
                 <div class="dot-gray mobile-hide"></div>
-                <div class="dot-gray"></div>
-                <div class="dot-gray"></div>
-                <div class="dot-gray"></div>
-                <div class="dot-gray"></div>
-                <div class="dot-gray"></div>
                 <div class="dot-gray"></div>
                 <div class="dot-gray"></div>
                 <div class="dot-gray"></div>

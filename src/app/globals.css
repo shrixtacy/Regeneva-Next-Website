@@ -1,1 +1,491 @@
-/* Minimal reset - all styling comes from the Webflow CSS */
+/* Elixios Pop Up Styling - Black Box with White Text */
+.cta-adelt {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid #222222 !important;
+  padding: 16px 20px !important;
+}
+
+.cta-adelt .logo-img {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+
+.cta-adelt .text-14-regular,
+.cta-adelt .text-14-regular.brown {
+  color: #ffffff !important;
+}
+
+.cta-adelt a,
+.cta-adelt a.orange-link {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+}
+
+.cta-adelt a.orange-link:hover {
+  color: #54BF44 !important;
+}
+
+.cta-adelt .cross-icon {
+  filter: invert(1) !important;
+}
+
+/* Footer Elixios Credit - High Contrast & High Visibility */
+.adelt-info {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.adelt-info .text-block-3 {
+  color: #ffffff !important;
+  font-size: 14px !important;
+  opacity: 0.9 !important;
+}
+
+.adelt-info a,
+.adelt-info a.link-footer {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  text-decoration: underline !important;
+  font-size: 14px !important;
+  opacity: 1 !important;
+}
+
+.adelt-info a.link-footer:hover {
+  color: #54BF44 !important;
+}
+
+/* Scoped Team Member placeholder shape override ONLY for Our Team section */
+#our-team .img-wrap,
+#our-team .img-wrap._1,
+#our-team .img-wrap._2 {
+  background: #E3DCCE !important;
+  background-image: none !important;
+  border-radius: 28px !important;
+}
+
+#our-team .ava-box,
+#our-team .ava-description {
+  border-radius: 28px !important;
+}
+
+/* Continuous Seamless Marquee Animation for Who ReGeneva Is For section */
+.images-carusel .carusel-wrapper {
+  overflow: hidden !important;
+  width: 100% !important;
+  display: flex !important;
+  position: relative !important;
+}
+
+.images-carusel .carusel-list {
+  display: flex !important;
+  gap: 1.5rem !important;
+  width: max-content !important;
+  animation: marqueeContinuous 28s linear infinite !important;
+}
+
+.images-carusel .carusel-list:hover {
+  animation-play-state: paused !important;
+}
+
+@keyframes marqueeContinuous {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.images-carusel img.carusel-img,
+.images-carusel .carusel-img {
+  width: 22.56em !important;
+  height: 15em !important;
+  border-radius: 20px !important;
+  object-fit: cover !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+}
+
+/* Fix glitch: Completely suppress floating bottom-right Webflow badge & contact popup on page load */
+.w-webflow-badge,
+.cta-adelt {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+/* Hero Card Initial Render Fix - Fresh Forest Green background & Instant PNG Image Display */
+.hero-wrapper {
+  background: linear-gradient(135deg, #2D3E31 0%, #3B4F3F 100%) !important;
+}
+
+.main-greenery-wrap,
+.main-greenery-wrap img,
+#floating-hero-img,
+#floating-esg-hero-img,
+#floating-company-hero-img,
+#floating-about-hero-img,
+#floating-clients-hero-img,
+#floating-resources-hero-img,
+#floating-insights-hero-img,
+#floating-casestudies-hero-img,
+#floating-blogs-hero-img,
+#floating-academy-hero-img,
+#floating-courses-hero-img {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ==========================================================================
+   STRICT MOBILE RESPONSIVE STYLES (Screen Width < 768px ONLY)
+   Desktop & Tablet Screens (>= 768px) remain 100% UNTOUCHED and ORIGINAL
+   ========================================================================== */
+
+@media screen and (max-width: 767px) {
+  /* Enforce native touch scrolling across the entire page */
+  html, body {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+    height: auto !important;
+    min-height: 100% !important;
+    position: relative !important;
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Disable pointer-events on background overlays so touch scrolling is NEVER blocked on Hero section */
+  .green-element-overlay,
+  .dark-green-overlay,
+  .dark-green-overlay-top,
+  .contact-overlay-bg {
+    pointer-events: none !important;
+    display: none !important;
+  }
+
+  /* Fixed Logo position on Mobile */
+  .sticky-logo,
+  .sticky-logo-wrap {
+    position: fixed !important;
+    top: 1.25rem !important;
+    right: 1.25rem !important;
+    z-index: 10000 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Outer Hero Containers - Touch Scrollable and Relative Positioned */
+  .section.hero,
+  .section.beige.hero {
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding: 0.5rem !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    touch-action: pan-y !important;
+    pointer-events: auto !important;
+  }
+
+  .w-layout-blockcontainer.container.hero,
+  .container.hero,
+  .inner-wrapper-hero {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    touch-action: pan-y !important;
+  }
+
+  /* The Main Hero Card - Touch Scrollable */
+  .hero-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    padding-top: 5rem !important; /* Clearance so title text sits below sticky logo */
+    padding-bottom: 2.5rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    margin: 0 !important;
+    border-radius: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: center !important;
+    gap: 1.25rem !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    overflow: visible !important;
+    touch-action: pan-y !important;
+    pointer-events: auto !important;
+  }
+
+  /* Mobile-only Menu Overrides (< 991px): Clean top-left Hamburger button */
+  .menu-wrapper {
+    position: fixed !important;
+    top: 1.2rem !important;
+    left: 1.2rem !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 3.2rem !important;
+    height: 3.2rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: 10001 !important;
+  }
+
+  /* Completely suppress & eliminate contact-btn-wrap & dots flash behind menu button on mobile (< 767px) */
+  .menu-wrapper .contact-btn-wrap,
+  .menu-wrapper .contact-btn,
+  .menu-wrapper .dots-decor,
+  .menu-wrapper .menu_dots-wrapper,
+  .menu-wrapper .menu_mask-for-dots,
+  .menu-wrapper .menu_mask-bg {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  .menu {
+    width: 3.2rem !important;
+    min-width: 3.2rem !important;
+    height: 3.2rem !important;
+    min-height: 3.2rem !important;
+    border-radius: 50% !important;
+    background-color: #1A2F25 !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+
+
+
+
+  /* 1. TOP TITLE: "Simplifying ESG. Amplifying Action." */
+  .hero-wrapper .h1._w-808,
+  .hero-wrapper h1.h1 {
+    order: 1 !important;
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    font-size: clamp(2rem, 5vw, 2.75rem) !important;
+    line-height: 1.18 !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    color: #ffffff !important;
+  }
+
+  /* 2. SUBTITLE / INTRO PARAGRAPH */
+  .hero-wrapper .text-16-regular {
+    order: 2 !important;
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem) !important;
+    line-height: 1.45 !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 0.75rem !important;
+    margin: 0 !important;
+    color: #ffffff !important;
+    opacity: 0.95 !important;
+  }
+
+  /* 3. MIDDLE ILLUSTRATION PNG */
+  .main-greenery-wrap {
+    order: 3 !important;
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0.75rem 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .main-greenery-wrap img,
+  #floating-hero-img,
+  #floating-esg-hero-img,
+  #floating-company-hero-img,
+  #floating-about-hero-img,
+  #floating-clients-hero-img,
+  #floating-resources-hero-img,
+  #floating-insights-hero-img,
+  #floating-casestudies-hero-img,
+  #floating-blogs-hero-img,
+  #floating-academy-hero-img,
+  #floating-courses-hero-img {
+    width: 100% !important;
+    max-width: 420px !important;
+    height: auto !important;
+    max-height: 340px !important;
+    transform: scale(1.05) !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+
+  /* 4. BOTTOM TITLE: "Driving Sustainable Value." (Placed below Illustration) */
+  .hero-wrapper h2.h1 {
+    order: 4 !important;
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    font-size: clamp(1.8rem, 4.8vw, 2.45rem) !important;
+    line-height: 1.18 !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: #ffffff !important;
+  }
+
+  /* 5. SCROLL DOWN INDICATOR */
+  .hero-bottom-text {
+    order: 5 !important;
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    margin-top: 0.5rem !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  /* 6. BOTTOM SOCIAL / CONTACT ICONS */
+  .links-bottom-bg,
+  .links-bottom-bg.wrap {
+    order: 6 !important;
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin-top: 0.75rem !important;
+    width: 100% !important;
+    justify-content: center !important;
+    display: flex !important;
+    gap: 1rem !important;
+  }
+
+  /* Our Team Section Mobile Stack */
+  #our-team .team-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  #our-team .ava-box {
+    width: 100% !important;
+  }
+
+  #our-team .img-wrap {
+    height: 240px !important;
+  }
+
+  #our-team .ava-description {
+    height: auto !important;
+    padding: 1.25rem 1rem !important;
+  }
+
+  /* Problem & Effects Section Grids */
+  .effects-grid,
+  .problems_grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Marquee Images */
+  .images-carusel img.carusel-img,
+  .images-carusel .carusel-img {
+    width: 16em !important;
+    height: 11em !important;
+    border-radius: 14px !important;
+  }
+
+  /* Footer Layout */
+  .footer-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  .footer-links {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  .text-55-medium {
+    font-size: 2.4rem !important;
+    line-height: 1.2 !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,7 +11,7 @@ export const ProblemSection = () => {
                     <div class="_40-text">
                         <div tons-40="" text-split-h1="" class="text-120-medium h-80">360°<br></div>
                         <div tons-40="" text-split-h1="" class="text-120-medium h-80 line-2">ESG<br></div>
-                        <div tons-40="" text-split-h1="" class="text-16-regular">Managed ESG Services</div><a href="#" target="_blank" class="info-tooltip w-inline-block"><img src="/assets/6739ea1da6ff68067b61cf83_flakee.svg" loading="lazy" alt="" class="info-icon"></a></div>
+                        <div tons-40="" text-split-h1="" class="text-16-regular">Managed ESG & Net-Zero Advisory</div><a href="#Contacts" class="info-tooltip w-inline-block"><img src="/assets/6739ea1da6ff68067b61cf83_flakee.svg" loading="lazy" alt="" class="info-icon"></a></div>
                     <div class="lottie-charts web">
                         <div class="lottie-charts-img green"><img src="/assets/675d69d9513cb60cf08354d7_dots%20green%202.png" loading="lazy" sizes="(max-width: 3092px) 100vw, 3092px" srcset="/assets/675d69d9513cb60cf08354d7_dots%20green%202-p-500.png 500w, /assets/675d69d9513cb60cf08354d7_dots%20green%202-p-800.png 800w, /assets/675d69d9513cb60cf08354d7_dots%20green%202.png 3092w" alt="" class="green-dots"></div>
                         <div class="lottie-charts-img web" data-w-id="f3dc0268-2e10-bf86-2462-d02ab303cb63" data-animation-type="lottie" data-src="/assets/675d6b4e18b6896f7f2f2db9_dots%203.json" data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="0" data-duration="3" data-loading="eager"></div>
@@ -21,8 +21,8 @@ export const ProblemSection = () => {
                         <div class="lottie-charts-img mobile" data-w-id="9c2cb609-c712-4e93-7aed-a684085db6df" data-animation-type="lottie" data-src="/assets/675d6cc4df9032dc7530c1d1_dots%20mobile%202.json" data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="0" data-duration="3" data-loading="eager"></div>
                     </div>
                     <div class="_40-bottom-text">
-                        <div tons-40="" text-split-h1="" class="text-52-semibold uae">Regulations continue to&nbsp;evolve.</div>
-                        <div tons-40="" text-split-h1="" class="text-16-regular green">Stakeholder expectations keep rising.</div>
+                        <div tons-40="" text-split-h1="" class="text-52-semibold uae">Driving Net-Zero Transformation</div>
+                        <div tons-40="" text-split-h1="" class="text-16-regular green">Across United Arab Emirates, GCC & Global Markets</div>
                     </div>
                 </div>
                 <div class="div-block-5">
@@ -32,7 +32,7 @@ export const ProblemSection = () => {
                 <div data-w-id="8cb93347-4785-202c-1650-d7f663b64285" class="numbers-text">
                     <div class="numbers-text-container">
                         <div class="hide-wrap">
-                            <div letters-slide-up-h1="" text-split-h1="" data-w-id="35f19dfc-82ad-6547-02d7-0455aa34f1b7" class="text-120-medium first">100% Action</div>
+                            <div letters-slide-up-h1="" text-split-h1="" data-w-id="35f19dfc-82ad-6547-02d7-0455aa34f1b7" class="text-120-medium first">100% Impact</div>
                             <div less-20="" text-split-h1="" class="text-120-medium second">Continuous<br></div>
                         </div>
                         <div class="storytell-text">

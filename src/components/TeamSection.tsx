@@ -6,26 +6,26 @@ export const TeamSection = () => {
             <div class="our-team-wrap">
                 <h1 class="h1 dark-brown">Our <span class="text-span-block">Team</span></h1>
                 <div class="team-wrap">
-                    <div class="ava-box _1">
-                        <div class="img-wrap _1"></div>
-                        <div class="ava-description">
+                    <div class="ava-box _1" style="border-radius: 28px !important;">
+                        <div class="img-wrap _1" style="background: #E3DCCE !important; background-image: none !important; border-radius: 28px !important;"></div>
+                        <div class="ava-description" style="border-radius: 28px !important;">
                             <div class="name-wrap">
-                                <div class="text-32-regular">Eugene<span class="text-span-block _2">Krasicki</span></div>
-                                <div>Co-founder</div>
+                                <div class="text-32-regular">First<span class="text-span-block _2">Last Name</span></div>
+                                <div>Designation</div>
                             </div>
-                            <div class="team-social-box"><a href="https://www.linkedin.com/in/efkrasicki/" target="_blank" class="social-link w-inline-block"><img src="/assets/67ec549cc54422e36efb8057_linkd.svg" loading="lazy" alt="" class="img-ico"></a>
-                                <a href="https://x.com/efkrasicki" target="_blank" class="social-link w-inline-block"><img src="/assets/67ed5a46345a7f56153f6e42_inst.svg" loading="lazy" alt="" class="img-ico"></a>
+                            <div class="team-social-box"><a href="#" target="_blank" class="social-link w-inline-block"><img src="/assets/67ec549cc54422e36efb8057_linkd.svg" loading="lazy" alt="" class="img-ico"></a>
                             </div>
                         </div>
                     </div>
-                    <div class="ava-box _2">
-                        <div class="img-wrap _2"></div>
-                        <div class="ava-description">
+                    <div class="ava-box _2" style="border-radius: 28px !important;">
+                        <div class="img-wrap _2" style="background: #E3DCCE !important; background-image: none !important; border-radius: 28px !important;"></div>
+                        <div class="ava-description" style="border-radius: 28px !important;">
                             <div class="name-wrap">
-                                <div class="text-32-regular">Yakov<span class="text-span-block _2">Valentiukevich</span></div>
-                                <div>Co-founder</div>
+                                <div class="text-32-regular">First<span class="text-span-block _2">Last Name</span></div>
+                                <div>Designation</div>
                             </div>
-                            <div class="team-social-box"><img src="/assets/67ec561cff123f63a8ee866d_Group%20132.svg" loading="lazy" alt="" class="image-2"></div>
+                            <div class="team-social-box"><a href="#" target="_blank" class="social-link w-inline-block"><img src="/assets/67ec549cc54422e36efb8057_linkd.svg" loading="lazy" alt="" class="img-ico"></a>
+                            </div>
                         </div>
                     </div>
                 </div>

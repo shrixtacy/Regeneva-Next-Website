@@ -9,7 +9,7 @@ export const SolutionSection = () => {
                         <h2 letters-slide-up-h1="" text-split-h1="" class="text-140-regular">Why<br>ReGeneva</h2><img src="/assets/6738c2f3a5741ddf29be8a84_brown-1.svg" loading="lazy" alt="" class="brown-icon"><img src="/assets/6738c316c8e327ef3cd1b687_brown-2.svg" loading="lazy" alt="" class="brown-icon"></div>
                     <div class="text-16-regular brown _w-510">Every organization's ESG journey is different and so is our approach. Whether you're preparing for BRSR, CSRD, or GRI reporting, strengthening investor confidence, improving ESG ratings, or building a Net Zero roadmap, we tailor every engagement to your business priorities.</div>
                 </div><img src="/assets/6738e950d57d477447a62624_main-kv-min.webp" loading="eager" sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px" srcset="/assets/6738e950d57d477447a62624_main-kv-min-p-500.webp 500w, /assets/6738e950d57d477447a62624_main-kv-min-p-800.webp 800w, /assets/6738e950d57d477447a62624_main-kv-min-p-1080.webp 1080w, /assets/6738e950d57d477447a62624_main-kv-min-p-1600.webp 1600w, /assets/6738e950d57d477447a62624_main-kv-min.webp 2001w" alt="" class="main-kv-img"></div>
-            <div id="why-saapro" class="why-saapro-wrap">
+            <div id="why-regeneva" class="why-saapro-wrap">
                 <div class="_w-888">
                     <div class="text-16-regular brown">The Value You Will Create</div>
                     <h2 text-split-h1="" letters-slide-up-h1="" class="h2 mobile-why">Build an ESG Strategy That Drives Business Value</h2>
